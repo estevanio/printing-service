@@ -1,0 +1,423 @@
+    <style type="text/css">
+    
+@page {
+    margin-top: 0.75in;
+    margin-bottom: 0.75in;
+    margin-left: 0.75in;
+    margin-right: 0.75in;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+    td.header {
+        background-color: #ccc;
+        font-weight: bold;
+    }
+    
+    table.black-border {
+        border: 2px solid #000;
+    }
+    
+    table {
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        width: 100%;
+    }
+    
+    table td {
+        vertical-align: top;
+        padding: 0 5px;
+        font-size: 0.85em;
+    }
+    
+    table.black-border td {
+        border-left: 1px solid #000;
+    }
+    
+    table.black-border td.first {
+        border-left: 0;
+    }
+    
+    table.black-border tr td {
+        border-top: 1px solid #000;
+    }
+    
+    table.black-border tr.first td {
+        border-top: 0;
+    }
+    
+    table.center tr td,
+    td.center {
+        text-align: center;
+    }
+    
+    table.two-column-item-list td.first {
+        background-color: #ccc;
+        font-weight: bold;
+        text-align: right;
+    }
+    </style>
+<div>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <span style="font-size:18px;"><strong>{{company_name}}</strong><br />
+					<span style="font-size:14px;">CA 336161<br />
+					{{street}}<br />
+					{{city}},&nbsp;{{state}}&nbsp;{{zip_code}}<br />
+					{{primary_phone_number}}</span></span>
+                    <br />
+                    <br />
+                    <table class="black-border two-column-item-list">
+                        <tbody>
+                            <tr class="first">
+                                <td class="first">
+                                    <span style="font-size: 12px;">Location</span></td>
+                                <td>
+                                    {{account}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Address</span></td>
+                                <td>
+                                    {{property_address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Tow Yard</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{address}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;"><strong style="font-size: 11px;">Reason for Tow</strong></span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{violations}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Vehicle</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{vehicle}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Color</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{vehicle_color}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Year</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{vehicle_year}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">VIN</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{vin}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">License Plate</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{license_plate}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Driver</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{driver_initials}}]</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Truck</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">[company_vehicle:Vehicle_#_Name]</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Tow Type</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{tow_method}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size: 12px;">Released By:</span></td>
+                                <td>
+                                    <span style="font-size: 12px;">{{who_released_vehicle}}Initials]</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table class="black-border center">
+                        <tbody>
+                            <tr class="first">
+                                <td class="header first">
+                                    <span style="font-size:12px;">Invoice #</span></td>
+                                <td class="header">
+                                    <span style="font-size:12px;">Date</span></td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <span style="font-size:12px;">{{generated_invoice_}}]</span></td>
+                                <td>
+                                    <span style="font-size:12px;">{{current_date}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table border="0.5" class="black-border two-column-item-list" style="margin-top:5px;">
+                        <tbody>
+                            <tr>
+                                <td class="header rtecenter">
+                                    <span style="font-size:12px;">Item</span></td>
+                                <td class="header rtecenter">
+                                    <span style="font-size:12px;">Amount</span></td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">Tow Fee ({{vehicle_class}})</span></strong></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{tow_fee}}</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">Storage Fee ({{days_of_storage}} day(s))</span></strong></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{storage_fee}}</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">Gate Fee ({{tow_pickup}})</span></strong></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{gate_fee}}</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <span style="font-size: 12.222222328186035px;"><b>Additional Trucks Total</b></span></td>
+                                <td class="rteright">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">Misc (see comments)</span></strong></td>
+                                <td class="rteright">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">City Fee</span></strong></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{city_fee}}</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">Lien Fee</span></strong></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{lien_fee}}</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">Adjustments</span></strong></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{adjustments}}</span></strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="black-border" style="margin-top:5px;">
+                        <tbody>
+                            <tr>
+                                <td class="first" rowspan="4">
+                                    <p><span style="font-size:12px;"><strong>Comments:</strong>&nbsp;&nbsp;</span>{{description}}</p>
+                                </td>
+                                <td class="header">
+                                    <em><span style="font-size: 12.222222328186px;">Prepayment</span></em></td>
+                                <td class="rteright">
+                                    {{actual_amount_paid_in_yard_services_not_in__use}}</td>
+                            </tr>
+                            <tr class="first">
+                                <td class="header">
+                                    <span style="font-size:12px;">Sub Total</span></td>
+                                <td class="rteright">
+                                    <span style="font-size:12px;"><strong>{{total_due}}</strong></span></td>
+                            </tr>
+                            <tr>
+                                <td class="header">
+                                    <span style="font-size:12px;"><strong>Total Due</strong></span></td>
+                                <td class="rteright">
+                                    <strong><span style="font-size:12px;">{{total_due}}</span></strong></td>
+                            </tr>
+                            <tr>
+                                <td class="header">
+                                    <span style="font-size: 12px;">Balance Due</span></td>
+                                <td class="rteright">
+                                    <span style="font-size:12px;"><strong>{{total_balance_owed}}</strong></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table cellpadding="0" cellspacing="0" class="black-border" style="margin-top:5px;">
+        <tbody>
+            <tr>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <span style="font-size: 12px;"><b>First Observed</b></span></td>
+                <td>
+                    <span style="font-size:12px;">{{first_observed}}</span></td>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <span style="font-size: 12px;"><b>Completed</b></span></td>
+                <td>
+                    <span style="font-size:12px;">{{completion_time}}</span></td>
+            </tr>
+            <tr>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <span style="font-size:12px;"><strong>Dispatched</strong></span></td>
+                <td>
+                    <span style="font-size:12px;">[dispatch:Job_Dispatched]</span></td>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <span style="font-size:12px;"><strong>Date In</strong></span></td>
+                <td>
+                    <span style="font-size:12px;">{{tow_time}}</span></td>
+            </tr>
+            <tr>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <span style="font-size:12px;"><strong>Arrived</strong></span></td>
+                <td>
+                    <span style="font-size:12px;">[dispatch:Arrived_at_Job_10_97]</span></td>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <strong><span style="font-size:12px;">Date Out</span></strong></td>
+                <td>
+                    <span style="font-size:12px;">{{tow_pickup}}</span></td>
+            </tr>
+            <tr>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    <strong><span style="font-size:12px;">In Tow Time</span></strong></td>
+                <td>
+                    <span style="font-size:12px;">{{tow_time}}</span></td>
+                <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<table cellpadding="0" cellspacing="0" class="black-border" style="margin-top:5px;">
+    <tbody>
+        <tr>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Released To</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{releasee_name}}</span></td>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Payer Name</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{payer_name}}</span></td>
+        </tr>
+        <tr>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Releasee License</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{releasee_drivers_license}}</span></td>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Payer License</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{payer_drivers_license}}</span></td>
+        </tr>
+        <tr>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Releasee Address</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{releasee_address}}</span></td>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Payer Address</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{payer_address}}</span></td>
+        </tr>
+        <tr>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Releasee Phone</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{releasee_phone}}</span></td>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Payer Phone</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{payer_phone}}</span></td>
+        </tr>
+        <tr>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Payment</strong></span></td>
+            <td>
+                <span style="font-size:12px;">{{actual_amount_paid}}</span></td>
+            <td class="rteright" style="background-color: rgb(204, 204, 204);">
+                <span style="font-size:12px;"><strong>Payment Reference</strong></span></td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    <br />
+    <span style="font-size:12px;"><strong><u>Residential Tow Authorization (Names must be redacted)</u></strong></span></p>
+<p><span style="font-size:12px;">AS AUTHORIZED SIGNER, I HEREBY AUTHORIZE THE REMOVAL OF THE VEHICLE DESCRIBED ABOVE AND AGREE TO HOLD PD TRANSPORT, INC. DBA SOUTHSIDE TOWING AND ITS EMPLOYEES HARMLESS FOR THE REMOVAL OF SAME. &quot;A TOWING COMPANY THAT REMOVES A VEHICLE FROM PRIVATE PROPERTY IN COMPLIANCE WITH SUBDIVISION(I) OF 22658CVC IS NOT RESPONSIBLE IN A SITUATION RELATION TO THE VALIDITY OF REMOVAL.&quot;</span></p>
+<p><span style="font-size:12px;">Authorized name and signature are removed for privacy.</span></p>
+<p><span style="font-size:12px;">Date:&nbsp;<strong>{{date_time_of_signature}}&nbsp;</strong></span><strong>{{authorization_date_time}}</strong></p>
+<table border="1" class="black-border">
+    <tbody>
+        <tr class="first">
+            <td class="first">
+                <div class="rtecenter">
+                    <span style="font-size: 0.85em;"><span style="font-size:14px;"><strong>Upon request, you are entitled to a copy of the towing fees and access notice.</strong></span>
+                    <br />
+                    <br />
+                    <span style="font-size:12px;">I, the undersigned, do hereby certify that I am legally authorized to take possession of the vehicle referenced above.</span></span>
+                </div>
+                <br />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="first">
+                                <br />
+                                <span style="font-size:12px;">_____________________________________________________<br />
+								Releasee Signature</span></td>
+                            <td class="first">
+                                <br />
+                                <span style="font-size:12px;">__________________<br />
+								Date&nbsp;</span><span style="font-size:10px;">{{current_date_time}}</span></td>
+                        </tr>
+                        <tr>
+                            <td class="first">
+                                <br />
+                                <span style="font-size:12px;">_____________________________________________________<br />
+								Payer Signature</span></td>
+                            <td class="first">
+                                <br />
+                                <span style="font-size:12px;">__________________<br />
+								Date&nbsp;</span><span style="font-size:10px;">{{current_date_time}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <span style="font-size:12px;"><span>{{company_name}} is not responsible for loss or damages caused by faulty tires, bumper brackets, etc. and assumes no responsibility for loss or damage by theft, fire or any other cause beyond our control, to any vehicle placed with us for storage or repair.</span></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p class="rtecenter"><u style="font-size: 12px;"><strong><span style="font-size:16px;"><span style="background-color:#e6e6fa;">IF YOU BELIEVE THAT YOU HAVE BEEN WRONGFULLY TOWED, CONTACT THE LAW ENFORCEMENT AGENCY (</span></span></strong></u><u style="font-size: 12px;"><strong><span style="font-size: 16px;"><span style="background-color: rgb(230, 230, 250);">{{default_police_dept}}) &nbsp;</span></span></strong></u><u style="font-size: 12px;"><strong><span style="font-size:16px;"><span style="background-color:#e6e6fa;">IN THE CITY THAT YOUR VEHICLE WAS TOWED FROM.&nbsp;</span></span></strong></u></p>
+<p class="rtecenter"><u><strong><span style="font-size:16px;"><span style="background-color:#e6e6fa;">SI USTED CREE QUE SIDO INJUSTAMENTE REMOLCADO USTED PUEDE LLAMAR AL DEPARTMENTO DE POLICIA &nbsp;(</span></span></strong></u><u style="font-size: 12px;"><strong><span style="font-size: 16px;"><span style="background-color: rgb(230, 230, 250);">{{default_police_dept}}</span></span></strong></u><u style="font-size: 12px;"><strong><span style="font-size:16px;"><span style="background-color:#e6e6fa;">) &nbsp;DE LA CIUDAD DONDE SU CARRO FUE REMOLCADO. &nbsp; {{default_police_dept}}</span></span></strong></u></p>
+<p class="rtecenter"><u><strong><span style="font-size:16px;"><span style="background-color:#e6e6fa;">NEW QUI VI CAM THAY XE CUA QUI VI BI KHEO KHONG DIMG LUAT. LAM ON GOI CANH SAT CUA THANH PHO MA XE QUI VI BI KEO. &nbsp; &nbsp;{{default_police_dept}}</span></span></strong></u></p>
+<p class="rteright">&nbsp;</p>
+<div>
+    &nbsp;</div>
