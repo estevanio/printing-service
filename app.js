@@ -1,7 +1,6 @@
 var app = angular.module('plunker', []);
 
 app.controller('MainCtrl', function($scope, printer) {
-
     $scope.name = 'World';
     $scope.account = "account";
     $scope.actual_amount_paid = "actual_amount_paid";
@@ -52,7 +51,7 @@ app.controller('MainCtrl', function($scope, printer) {
     $scope.violations = "violations";
     $scope.who_released_vehicle = "who_released_vehicle";
     $scope.zip_code = "zip_code";
-
+    $scope.data={};
     $scope.data.name = 'World';
     $scope.data.account = "account";
     $scope.data.actual_amount_paid = "actual_amount_paid";
