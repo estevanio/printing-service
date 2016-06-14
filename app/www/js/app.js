@@ -22,8 +22,8 @@ angular.module('app', ['ionic', 'ngCordova'])
             }
         });
     })
-    .controller('ctrl', ['$scope', 'printer',  function($scope, printer) {
-   
+    .controller('ctrl', ['$scope', 'PrintSvc', '$http', function($scope, PrintSvc, $http) {
+
         $scope.name = 'World';
         $scope.account = "account";
         $scope.actual_amount_paid = "actual_amount_paid";
@@ -126,22 +126,22 @@ angular.module('app', ['ionic', 'ngCordova'])
         $scope.data.who_released_vehicle = "who_released_vehicle";
         $scope.data.zip_code = "zip_code";
         // var printerAvail = $cordovaPrinter.isAvailable();
-        $scope.print = function () {
-            printer.print("template.html", $scope.data);
+
+        $scope.printtpl = function() {
+            $http.get("template.html").success(function(template) {
+                PrintSvc.printTmpl(template, $scope.data);
+            });
         };
-}])
-
-.factory('printer', ['$rootScope', '$compile', '$http', '$timeout', '$q', '$cordovaPrinter', function ($rootScope, $compile, $http, $timeout, $q, $cordovaPrinter) {
-   
-        // var doc = "<html> <body>kjfhdkjfhfdksjhflkf</body> </html>";
+        $scope.printurl = function() {
+            PrintSvc.printUrl("template.html", $scope.data);
+        };
 
 
-    // var print = function (templateUrl, data) {
-    //     console.log("yooo");
-    //     $cordovaPrinter.print(doc);
-    // }  ;
+    }])
 
-    var print = function(templateUrl, data) {
+.factory('PrintSvc', ['$rootScope', '$compile', '$http', '$timeout', '$q', '$cordovaPrinter', function($rootScope, $compile, $http, $timeout, $q, $cordovaPrinter) {
+
+    var printUrl = function(templateUrl, data) {
         $http.get(templateUrl).success(function(template) {
             var printScope = $rootScope.$new();
             angular.extend(printScope, data);
@@ -149,7 +149,7 @@ angular.module('app', ['ionic', 'ngCordova'])
             var waitForRenderAndPrint = function() {
                 if (printScope.$$phase || $http.pendingRequests.length) {
                     $timeout(waitForRenderAndPrint);
-                } else {    
+                } else {
                     // console.log("should print");
                     $cordovaPrinter.print(element.html());
                     printScope.$destroy();
@@ -158,11 +158,27 @@ angular.module('app', ['ionic', 'ngCordova'])
             waitForRenderAndPrint();
         });
     };
-
+    var printTmpl = function(template, data) {
+        // console.log(template);
+        // console.log(data);
+        var printScope = $rootScope.$new();
+        angular.extend(printScope, data);
+        var element = $compile(angular.element('<div>' + template + '</div>'))(printScope);
+        var waitForRenderAndPrint = function() {
+            if (printScope.$$phase || $http.pendingRequests.length) {
+                $timeout(waitForRenderAndPrint);
+            } else {
+                // console.log("should print");
+                $cordovaPrinter.print(element.html());
+                printScope.$destroy();
+            }
+        };
+        waitForRenderAndPrint();
+    };
 
 
     return {
-        print: print,
+        printUrl: printUrl,
+        printTmpl: printTmpl
     };
-}])
-;
+}]);
