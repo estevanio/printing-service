@@ -1,6 +1,6 @@
 var app = angular.module('plunker', []);
 
-app.controller('MainCtrl', function($scope, printer) {
+app.controller('MainCtrl', function($scope, PrintSvc, $http) {
     $scope.name = 'World';
     $scope.account = "account";
     $scope.actual_amount_paid = "actual_amount_paid";
@@ -51,7 +51,7 @@ app.controller('MainCtrl', function($scope, printer) {
     $scope.violations = "violations";
     $scope.who_released_vehicle = "who_released_vehicle";
     $scope.zip_code = "zip_code";
-    $scope.data={};
+    $scope.data = {};
     $scope.data.name = 'World';
     $scope.data.account = "account";
     $scope.data.actual_amount_paid = "actual_amount_paid";
@@ -103,17 +103,18 @@ app.controller('MainCtrl', function($scope, printer) {
     $scope.data.who_released_vehicle = "who_released_vehicle";
     $scope.data.zip_code = "zip_code";
 
-
-    // $scope.printscope = function() {
-    //     printer.printFromScope("template.html", $scope);
-    // };
+    $scope.printtpl = function() {
+        $http.get("template.html").success(function(template) {
+            PrintSvc.printtmpl(template, $scope.data);
+        });
+    };
     $scope.printdata = function() {
-        printer.print("template.html", $scope.data);
+        PrintSvc.printUrl("template.html", $scope.data);
     };
 })
 
 
-.factory('printer', ['$rootScope', '$compile', '$document', '$http', '$timeout', '$q', function($rootScope, $compile, $document, $http, $timeout, $q) {
+.factory('PrintSvc', ['$rootScope', '$compile', '$document', '$http', '$timeout', '$q', function($rootScope, $compile, $document, $http, $timeout, $q) {
     var printHtml = function(html) {
         var deferred = $q.defer();
         var iframe = document.createElement('iframe');
@@ -137,8 +138,7 @@ app.controller('MainCtrl', function($scope, printer) {
         return deferred.promise;
     };
 
-
-    var print = function(templateUrl, data) {
+    var printUrl = function(templateUrl, data) {
         $http.get(templateUrl).success(function(template) {
             var printScope = $rootScope.$new();
             angular.extend(printScope, data);
@@ -146,8 +146,7 @@ app.controller('MainCtrl', function($scope, printer) {
             var waitForRenderAndPrint = function() {
                 if (printScope.$$phase || $http.pendingRequests.length) {
                     $timeout(waitForRenderAndPrint);
-                } else {    
-                    // Replace printHtml with openNewWindow for debugging
+                } else {
                     printHtml(element.html());
                     printScope.$destroy();
                 }
@@ -156,27 +155,24 @@ app.controller('MainCtrl', function($scope, printer) {
         });
     };
 
-    // var printFromScope = function(templateUrl, scope) {
-    //     $rootScope.isBeingPrinted = true;
-    //     $http.get(templateUrl).success(function(template) {
-    //         var printScope = scope;
-    //         //used jquery no bueno
-    //         var element = $compile('<div>' + template + '</div>')(printScope);
-    //         var waitForRenderAndPrint = function() {
-    //             if (printScope.$$phase || $http.pendingRequests.length) {
-    //                 $timeout(waitForRenderAndPrint);
-    //             } else {
-    //                 printHtml(element.html()).then(function() {
-    //                     $rootScope.isBeingPrinted = false;
-    //                 });
+    var printtmpl = function(template, data) {
+        var printScope = $rootScope.$new();
+        angular.extend(printScope, data);
+        var element = $compile(angular.element('<div>' + template + '</div>'))(printScope);
+        var waitForRenderAndPrint = function() {
+            if (printScope.$$phase) {
+                $timeout(waitForRenderAndPrint);
+            } else {
+                printHtml(element.html());
+                printScope.$destroy();
+            }
+        };
+        waitForRenderAndPrint();
 
-    //             }
-    //         };
-    //         waitForRenderAndPrint();
-    //     });
-    // };
+    };
+
     return {
-        print: print,
-        // printFromScope: printFromScope,
+        printUrl: printUrl,
+        printtmpl: printtmpl
     };
 }]);
