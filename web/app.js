@@ -104,8 +104,11 @@ app.controller('MainCtrl', function($scope, printer) {
     $scope.data.zip_code = "zip_code";
 
 
-    $scope.print = function() {
-        printer.printFromScope("template.html", $scope);
+    // $scope.printscope = function() {
+    //     printer.printFromScope("template.html", $scope);
+    // };
+    $scope.printdata = function() {
+        printer.print("template.html", $scope.data);
     };
 })
 
@@ -143,7 +146,7 @@ app.controller('MainCtrl', function($scope, printer) {
             var waitForRenderAndPrint = function() {
                 if (printScope.$$phase || $http.pendingRequests.length) {
                     $timeout(waitForRenderAndPrint);
-                } else {
+                } else {    
                     // Replace printHtml with openNewWindow for debugging
                     printHtml(element.html());
                     printScope.$destroy();
@@ -153,27 +156,27 @@ app.controller('MainCtrl', function($scope, printer) {
         });
     };
 
-    var printFromScope = function(templateUrl, scope) {
-        $rootScope.isBeingPrinted = true;
-        $http.get(templateUrl).success(function(template) {
-            var printScope = scope;
-            //used jquery no bueno
-            var element = $compile('<div>' + template + '</div>')(printScope);
-            var waitForRenderAndPrint = function() {
-                if (printScope.$$phase || $http.pendingRequests.length) {
-                    $timeout(waitForRenderAndPrint);
-                } else {
-                    printHtml(element.html()).then(function() {
-                        $rootScope.isBeingPrinted = false;
-                    });
+    // var printFromScope = function(templateUrl, scope) {
+    //     $rootScope.isBeingPrinted = true;
+    //     $http.get(templateUrl).success(function(template) {
+    //         var printScope = scope;
+    //         //used jquery no bueno
+    //         var element = $compile('<div>' + template + '</div>')(printScope);
+    //         var waitForRenderAndPrint = function() {
+    //             if (printScope.$$phase || $http.pendingRequests.length) {
+    //                 $timeout(waitForRenderAndPrint);
+    //             } else {
+    //                 printHtml(element.html()).then(function() {
+    //                     $rootScope.isBeingPrinted = false;
+    //                 });
 
-                }
-            };
-            waitForRenderAndPrint();
-        });
-    };
+    //             }
+    //         };
+    //         waitForRenderAndPrint();
+    //     });
+    // };
     return {
         print: print,
-        printFromScope: printFromScope,
+        // printFromScope: printFromScope,
     };
 }]);
